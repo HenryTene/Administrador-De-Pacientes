@@ -1,23 +1,39 @@
 import { useState, useEffect } from "react";
+import Error from "./Error";
 
-const Formulario = () => {
+const Formulario = ({ pacientes, setPacientes }) => {
   const [nombre, setNombre] = useState("");
   const [propietario, setPropietario] = useState("");
   const [email, setEmail] = useState("");
   const [fecha, setFecha] = useState("");
   const [sintomas, setSintomas] = useState("");
-
   const [error, setError] = useState(false);
 
   function handleSubmit(e) {
     e.preventDefault();
 
     if ([nombre, propietario, email, fecha, sintomas].includes("")) {
-      
       setError(true);
       return;
     }
     setError(false);
+
+    const objetoPaciente = {
+      nombre,
+      propietario,
+      email,
+      fecha,
+      sintomas,
+    };
+
+    setPacientes([...pacientes, objetoPaciente]);
+    setNombre("");
+    setPropietario("");
+    setEmail("");
+    setFecha("");
+    setSintomas("");
+
+
   }
 
   return (
@@ -33,13 +49,11 @@ const Formulario = () => {
         onSubmit={handleSubmit}
         className="bg-white shadow-md rounded-lg px-10 py-5 mb-10 mx-5"
       >
-        {error && 
-         /*  <div className="bg-pink-600 text-white text-center p-3 
+        {error && <Error  mensaje='Todos los campos son obligatorios'/>
+          /*  <div className="bg-pink-600 text-white text-center p-3 
           uppercase font-bold mb-3 rounded-md"
           > */
-            <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
-            <p>Todos los campos son obligatorios</p>
-          </div>
+         
         }
         <div className="mb-5">
           <label
