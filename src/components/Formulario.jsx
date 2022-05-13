@@ -1,11 +1,40 @@
 import { useState, useEffect } from "react";
+import Error from "./Error";
 
-const Formulario = () => {
+const Formulario = ({ pacientes, setPacientes }) => {
   const [nombre, setNombre] = useState("");
   const [propietario, setPropietario] = useState("");
   const [email, setEmail] = useState("");
   const [fecha, setFecha] = useState("");
   const [sintomas, setSintomas] = useState("");
+  const [error, setError] = useState(false);
+
+  function handleSubmit(e) {
+    e.preventDefault();
+
+    if ([nombre, propietario, email, fecha, sintomas].includes("")) {
+      setError(true);
+      return;
+    }
+    setError(false);
+
+    const objetoPaciente = {
+      nombre,
+      propietario,
+      email,
+      fecha,
+      sintomas,
+    };
+
+    setPacientes([...pacientes, objetoPaciente]);
+    setNombre("");
+    setPropietario("");
+    setEmail("");
+    setFecha("");
+    setSintomas("");
+
+
+  }
 
   return (
     <div className="md:w-1/2 ls:w-2/5">
@@ -17,9 +46,15 @@ const Formulario = () => {
       </p>
 
       <form
-        action=""
+        onSubmit={handleSubmit}
         className="bg-white shadow-md rounded-lg px-10 py-5 mb-10 mx-5"
       >
+        {error && <Error  mensaje='Todos los campos son obligatorios'/>
+          /*  <div className="bg-pink-600 text-white text-center p-3 
+          uppercase font-bold mb-3 rounded-md"
+          > */
+         
+        }
         <div className="mb-5">
           <label
             htmlFor="mascota"
@@ -80,7 +115,7 @@ const Formulario = () => {
             type="date"
             className="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md"
             value={fecha}
-            onChange={(e)=>setFecha(e.target.value)}
+            onChange={(e) => setFecha(e.target.value)}
           />
         </div>
         <div className="mb-5">
@@ -95,7 +130,7 @@ const Formulario = () => {
             className="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md"
             placeholder="Describe los síntomas"
             value={sintomas}
-            onChange={(e)=>setSintomas(e.target.value)}
+            onChange={(e) => setSintomas(e.target.value)}
           />
         </div>
 
