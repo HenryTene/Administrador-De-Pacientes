@@ -1,4 +1,8 @@
+import { useState, useEffect } from "react";
+
 const Formulario = () => {
+  const [nombre, setNombre] = useState("Hook");
+
   return (
     <div className="md:w-1/2 ls:w-2/5">
       <h2 className="font-black text-3xl text-center">Segumiento Pacientes</h2>
