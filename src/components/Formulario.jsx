@@ -34,8 +34,10 @@ const Formulario = () => {
         className="bg-white shadow-md rounded-lg px-10 py-5 mb-10 mx-5"
       >
         {error && 
-          <div className="bg-red-800 text-white text-center p-3 
-          uppercase font-bold mb-3 rounded-md">
+         /*  <div className="bg-pink-600 text-white text-center p-3 
+          uppercase font-bold mb-3 rounded-md"
+          > */
+            <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
             <p>Todos los campos son obligatorios</p>
           </div>
         }
