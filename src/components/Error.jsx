@@ -1,4 +1,4 @@
-const Error = ({ children}) => {
+const Error = ({ children }) => {
   return (
     <div>
       <div
