@@ -32,8 +32,6 @@ const Formulario = ({ pacientes, setPacientes }) => {
     setEmail("");
     setFecha("");
     setSintomas("");
-
-
   }
 
   return (
@@ -49,12 +47,12 @@ const Formulario = ({ pacientes, setPacientes }) => {
         onSubmit={handleSubmit}
         className="bg-white shadow-md rounded-lg px-10 py-5 mb-10 mx-5"
       >
-        {error && <Error  mensaje='Todos los campos son obligatorios'/>
-          /*  <div className="bg-pink-600 text-white text-center p-3 
-          uppercase font-bold mb-3 rounded-md"
-          > */
-         
-        }
+        {error && (
+          <Error>
+            {" "}
+            <p>Todos los campos son obligatorios </p>
+          </Error>
+        )}
         <div className="mb-5">
           <label
             htmlFor="mascota"
