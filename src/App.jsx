@@ -11,11 +11,12 @@ function App() {
     <div className="container mx-auto mt-5">
       <Header numeros={1} />
       <div className="mt-12 md:flex">
-        <Formulario setPacientes={setPacientes} pacientes={pacientes} />
-        <ListadoPacientes
-         pacientes={pacientes}
-         setPaciente={setPaciente}
-         />
+        <Formulario
+          setPacientes={setPacientes}
+          pacientes={pacientes}
+          paciente={paciente}
+        />
+        <ListadoPacientes pacientes={pacientes} setPaciente={setPaciente} />
       </div>
     </div>
   );
